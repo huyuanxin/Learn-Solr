@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 @Service("DeleteDemoService")
 public class DeleteDemoServiceImpl implements DeleteDemoService {
-    private SolrClient solrClient;
+    private final SolrClient solrClient;
 
     @Autowired
     public DeleteDemoServiceImpl(SolrClient solrClient) {

@@ -4,12 +4,10 @@ import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.response.QueryResponse;
-import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import yuanxin.learn.solr.api.SearchDemoService;
 import yuanxin.learn.solr.po.Demo;
-import yuanxin.learn.solr.util.ModelToSolrDocument;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,7 +19,7 @@ import java.util.List;
  */
 @Service("SearchDemoService")
 public class SearchDemoServiceImpl implements SearchDemoService {
-    private SolrClient solrClient;
+    private final SolrClient solrClient;
 
     @Autowired
     public SearchDemoServiceImpl(SolrClient solrClient) {
@@ -43,9 +41,7 @@ public class SearchDemoServiceImpl implements SearchDemoService {
             if (queryResponse != null) {
                 demoList = queryResponse.getBeans(Demo.class);
             }
-        } catch (SolrServerException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (SolrServerException | IOException e) {
             e.printStackTrace();
         }
         return demoList;

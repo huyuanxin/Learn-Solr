@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 @Service("UpdateDemoService")
 public class UpdateDemoServiceImpl implements UpdateDemoService {
-    private SolrClient solrClient;
+    private final SolrClient solrClient;
 
     @Autowired
     public UpdateDemoServiceImpl(SolrClient solrClient) {

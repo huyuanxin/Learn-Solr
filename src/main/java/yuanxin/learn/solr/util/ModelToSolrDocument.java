@@ -9,7 +9,7 @@ import yuanxin.learn.solr.po.Demo;
  * @create 2020/12/7 15:30
  */
 public class ModelToSolrDocument {
-    public static SolrInputDocument DemoToSolrDocument(Demo demo) {
+    public static SolrInputDocument demoToSolrDocument(Demo demo) {
         // Demo转为SolrInputDocument
         SolrInputDocument document = new SolrInputDocument();
         if (!StringUtils.isEmpty(demo.getUid())) {

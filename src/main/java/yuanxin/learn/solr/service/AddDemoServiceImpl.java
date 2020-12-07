@@ -32,7 +32,7 @@ public class AddDemoServiceImpl implements AddDemoService {
      */
     @Override
     public boolean addDemo(Demo demo) {
-        SolrInputDocument document = ModelToSolrDocument.DemoToSolrDocument(demo);
+        SolrInputDocument document = ModelToSolrDocument.demoToSolrDocument(demo);
         try {
             solrClient.add(document);
             solrClient.commit();

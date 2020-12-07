@@ -53,8 +53,7 @@ public class DemoSolrController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public boolean deleteDemo(
-            @RequestParam("uid") String uid
-    ) {
+            @RequestParam("uid") String uid) {
         return deleteDemoService.deleteDemo(uid);
     }
 }

@@ -1,10 +1,7 @@
 package yuanxin.learn.solr.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import yuanxin.learn.solr.api.AddDemoService;
 import yuanxin.learn.solr.api.DeleteDemoService;
 import yuanxin.learn.solr.api.SearchDemoService;
@@ -20,10 +17,10 @@ import java.util.List;
  */
 @RestController
 public class DemoSolrController {
-    private SearchDemoService searchDemoService;
-    private DeleteDemoService deleteDemoService;
-    private UpdateDemoService updateDemoService;
-    private AddDemoService addDemoService;
+    final private SearchDemoService searchDemoService;
+    final private DeleteDemoService deleteDemoService;
+    final private UpdateDemoService updateDemoService;
+    final private AddDemoService addDemoService;
 
     @Autowired
     public DemoSolrController(SearchDemoService searchDemoService, DeleteDemoService deleteDemoService, UpdateDemoService updateDemoService, AddDemoService addDemoService) {
@@ -49,11 +46,8 @@ public class DemoSolrController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public boolean updateDemo() {
-        Demo demo = new Demo();
-        demo.setUid("10");
-        demo.setName("changeDemo");
-        demo.setDesc("changeDemo");
+    public boolean updateDemo(
+            @RequestBody Demo demo) {
         return updateDemoService.updateDemo(demo);
     }
 

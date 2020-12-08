@@ -12,7 +12,7 @@ public interface DeleteDemoService {
      * 删除Solr的单个Demo
      *
      * @param uid Demo的Uid
-     * @return 是否成功
+     * @return 是否成功 {@link Boolean}
      */
     boolean deleteDemo(String uid);
 }

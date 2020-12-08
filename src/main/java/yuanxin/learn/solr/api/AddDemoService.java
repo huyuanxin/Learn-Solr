@@ -13,7 +13,7 @@ public interface AddDemoService {
      * 添加单个demo到Solr
      *
      * @param demo 添加的单个demo
-     * @return 是否成功
+     * @return 是否成功 {@link Demo}
      */
     boolean addDemo(Demo demo);
 }

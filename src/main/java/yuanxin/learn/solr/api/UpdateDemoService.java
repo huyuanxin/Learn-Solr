@@ -13,7 +13,7 @@ public interface UpdateDemoService {
      * 更新Solr里面的demo
      *
      * @param demo 更新的demo
-     * @return 是否成功
+     * @return 是否成功 {@link Boolean}
      */
     boolean updateDemo(Demo demo);
 }

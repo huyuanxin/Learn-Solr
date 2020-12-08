@@ -56,4 +56,12 @@ public class DemoSolrController {
             @RequestParam("uid") String uid) {
         return deleteDemoService.deleteDemo(uid);
     }
+
+    @RequestMapping(value = "/searchWithAge", method = RequestMethod.GET)
+    public List<Demo> searchWithAge(
+            @RequestParam("start") int start,
+            @RequestParam("ending") int ending
+    ) {
+        return searchDemoService.searchDemoWithAgeFitter(start, ending);
+    }
 }

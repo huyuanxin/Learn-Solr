@@ -19,14 +19,18 @@ public class DemoSearchResultDTO {
     @JsonProperty("rows")
     List<Demo> rows;
 
+    @JsonProperty("RowsSize")
+    Long rowsSize;
+
     @JsonProperty("total")
     Long total;
 
-    public DemoSearchResultDTO(String code, String message, List<Demo> rows) {
+    public DemoSearchResultDTO(String code, String message, List<Demo> rows, Long total) {
         this.code = code;
         this.message = message;
         this.rows = rows;
-        this.total = (long) rows.size();
+        this.rowsSize = (long) rows.size();
+        this.total = total;
     }
 
     public String getCode() {
@@ -67,6 +71,7 @@ public class DemoSearchResultDTO {
                 "code='" + code + '\'' +
                 ", message='" + message + '\'' +
                 ", rows=" + rows +
+                ", rowsSize=" + rowsSize +
                 ", total=" + total +
                 '}';
     }

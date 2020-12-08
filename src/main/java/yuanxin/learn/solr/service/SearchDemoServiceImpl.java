@@ -77,6 +77,24 @@ public class SearchDemoServiceImpl implements SearchDemoService {
     }
 
     /**
+     * 带分页查询Solr内的Demo
+     *
+     * @param currentPage 当前页数
+     * @param pageSize    页面显示个数
+     * @return 查询结果 {@link DemoSearchResultDTO}
+     */
+    @Override
+    public DemoSearchResultDTO searchDemo(int currentPage, int pageSize) {
+        SolrQuery solrQuery = new SolrQuery();
+        solrQuery.setQuery("*:*");
+        int start = (currentPage - 1) * pageSize;
+        solrQuery.setStart(start);
+        solrQuery.setRows(pageSize);
+        List<Demo> demoList = queryDemosList(solrQuery);
+        return new DemoSearchResultDTO("200", "查询成功", demoList);
+    }
+
+    /**
      * 执行solrQuery,返回DemoList
      *
      * @param solrQuery solr查询语句{@link SolrQuery}

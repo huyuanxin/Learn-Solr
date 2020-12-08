@@ -8,7 +8,6 @@ import yuanxin.learn.solr.api.SearchDemoService;
 import yuanxin.learn.solr.api.UpdateDemoService;
 import yuanxin.learn.solr.po.Demo;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,34 +29,30 @@ public class DemoSolrController {
         this.addDemoService = addDemoService;
     }
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    @RequestMapping(value = "/searchDemo", method = RequestMethod.GET)
     public List<Demo> searchAllDemo() {
         return searchDemoService.searchAllDemo();
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public boolean addDemo() {
-        Demo demo = new Demo();
-        demo.setUid("10");
-        demo.setName("addDemo");
-        demo.setDesc("addDemo");
-        demo.setDate(new Date());
+    @RequestMapping(value = "/addDemo", method = RequestMethod.GET)
+    public boolean addDemo(
+            @RequestBody Demo demo) {
         return addDemoService.addDemo(demo);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/updateDemo", method = RequestMethod.GET)
     public boolean updateDemo(
             @RequestBody Demo demo) {
         return updateDemoService.updateDemo(demo);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteDemo", method = RequestMethod.GET)
     public boolean deleteDemo(
             @RequestParam("uid") String uid) {
         return deleteDemoService.deleteDemo(uid);
     }
 
-    @RequestMapping(value = "/searchWithAge", method = RequestMethod.GET)
+    @RequestMapping(value = "/searchDemoWithAge", method = RequestMethod.GET)
     public List<Demo> searchWithAge(
             @RequestParam(value = "start", required = false, defaultValue = "-1") int start,
             @RequestParam(value = "ending", required = false, defaultValue = "-1") int ending) {

@@ -24,8 +24,8 @@ public class DeleteDemoServiceImpl implements DeleteDemoService {
     /**
      * 删除Solr的单个Demo
      *
-     * @param uid Demo的Uid
-     * @return 是否成功
+     * @param uid Demo的Uid {@link String}
+     * @return 是否成功 {@link Boolean}
      */
     @Override
     public boolean deleteDemo(String uid) {

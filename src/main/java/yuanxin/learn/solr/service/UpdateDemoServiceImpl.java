@@ -25,8 +25,8 @@ public class UpdateDemoServiceImpl implements UpdateDemoService {
     /**
      * 更新solr里面的demo
      *
-     * @param demo 更新的demo
-     * @return 是否成功
+     * @param demo 更新的demo {@link Demo}
+     * @return 是否成功 {@link Boolean}
      */
     @Override
     public boolean updateDemo(Demo demo) {

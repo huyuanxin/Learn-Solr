@@ -28,7 +28,7 @@ public class SearchDemoServiceImpl implements SearchDemoService {
     }
 
     /**
-     * 查询所以demo
+     * 查询所有demo {@link List<Demo>}
      *
      * @return 查询结果 {@link DemoSearchResultDTO}
      */

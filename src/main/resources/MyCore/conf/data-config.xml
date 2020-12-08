@@ -1,0 +1,23 @@
+<dataConfig>
+    <dataSource name="demo" driver="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://127.0.0.1:3306/demo" user="root"
+                password="root"/>
+
+    <document>
+        <entity name="demo"
+                dataSource="demo"
+                query="Select uid,`Name`,`Desc`,create_time,Age From demo"
+                deltaImportQuery="Select uid,`Name`,`Desc`,create_time,age From demo where uid='${dataimporter.delta.id}'"
+                deltaQuery="select uid from demo where create_time > '${dataimporter.last_index_time}'">
+            <!--            name=id 是managed-schema配置的主键 <uniqueKey>id</uniqueKey>-->
+            <field column="uid" name="id"/>
+            <field column="Name" name="Name"/>
+            <field column="Desc" name="Desc"/>
+            <field column="Create_Time" name="Create_Time"/>
+            <field column="Age" name="Age"/>
+        </entity>
+
+        <entity name="User">
+
+        </entity>
+    </document>
+</dataConfig>

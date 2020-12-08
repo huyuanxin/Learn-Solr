@@ -1,5 +1,7 @@
 package yuanxin.learn.solr.controller.solr.demo;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import yuanxin.learn.solr.po.Demo;
  * @author huyuanxin
  * @create 2020/12/8 11:26
  */
+@Api(tags = "更新Demo的api")
 @RestController
 public class UpdateDemoController {
     final private UpdateDemoService updateDemoService;
@@ -21,6 +24,7 @@ public class UpdateDemoController {
         this.updateDemoService = updateDemoService;
     }
 
+    @ApiOperation(value = "更新Demo", response = boolean.class)
     @RequestMapping(value = "/updateDemo", method = RequestMethod.GET)
     public boolean updateDemo(
             @RequestBody Demo demo) {

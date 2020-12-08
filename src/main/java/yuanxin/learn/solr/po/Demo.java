@@ -2,6 +2,8 @@ package yuanxin.learn.solr.po;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.apache.solr.client.solrj.beans.Field;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.solr.core.mapping.SolrDocument;
@@ -12,44 +14,50 @@ import java.util.Date;
  * @author huyuanxin
  * @create 2020/12/7 14:24
  */
+@ApiModel(value = "Demo", description = "数据库以及Solr中转换的实体对象")
 @SolrDocument(collection = "MyCore")
 public class Demo {
     /**
      * uid
      */
     @Id
-    @JsonProperty("Uid")
     @Field("id")
+    @JsonProperty("Uid")
+    @ApiModelProperty("Demo的Uid")
     String uid;
 
     /**
      * 姓名
      */
-    @JsonProperty("Name")
     @Field("Name")
+    @JsonProperty("Name")
+    @ApiModelProperty("Demo的Name")
     String name;
 
     /**
      * desc
      */
-    @JsonProperty("Desc")
     @Field("Desc")
+    @JsonProperty("Desc")
+    @ApiModelProperty("Demo的desc")
     String desc;
 
     /**
      * date
      */
-    @JsonProperty("Date")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @Field("Create_Time")
+    @JsonProperty("Date")
+    @ApiModelProperty("Demo的date")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     Date date;
 
     /**
      * 年龄
      */
-    @JsonProperty("Age")
     @Field("Age")
-    String Age;
+    @JsonProperty("Age")
+    @ApiModelProperty("Demo的age")
+    String age;
 
     public String getUid() {
         return uid;
@@ -84,10 +92,10 @@ public class Demo {
     }
 
     public String getAge() {
-        return Age;
+        return age;
     }
 
     public void setAge(String age) {
-        Age = age;
+        this.age = age;
     }
 }

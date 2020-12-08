@@ -6,9 +6,8 @@ import yuanxin.learn.solr.api.AddDemoService;
 import yuanxin.learn.solr.api.DeleteDemoService;
 import yuanxin.learn.solr.api.SearchDemoService;
 import yuanxin.learn.solr.api.UpdateDemoService;
+import yuanxin.learn.solr.dto.DemoSearchResultDTO;
 import yuanxin.learn.solr.po.Demo;
-
-import java.util.List;
 
 /**
  * @author huyuanxin
@@ -30,7 +29,7 @@ public class DemoSolrController {
     }
 
     @RequestMapping(value = "/searchDemo", method = RequestMethod.GET)
-    public List<Demo> searchAllDemo() {
+    public DemoSearchResultDTO searchAllDemo() {
         return searchDemoService.searchAllDemo();
     }
 
@@ -53,7 +52,7 @@ public class DemoSolrController {
     }
 
     @RequestMapping(value = "/searchDemoWithAge", method = RequestMethod.GET)
-    public List<Demo> searchWithAge(
+    public DemoSearchResultDTO searchWithAge(
             @RequestParam(value = "start", required = false, defaultValue = "-1") int start,
             @RequestParam(value = "ending", required = false, defaultValue = "-1") int ending) {
         return searchDemoService.searchDemoWithAgeFitter(start, ending);

@@ -7,9 +7,11 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import yuanxin.learn.solr.api.SearchDemoService;
+import yuanxin.learn.solr.dto.DemoSearchResultDTO;
 import yuanxin.learn.solr.po.Demo;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,13 +30,14 @@ public class SearchDemoServiceImpl implements SearchDemoService {
     /**
      * 查询所以demo
      *
-     * @return 查询结果 {@link List<Demo>}
+     * @return 查询结果 {@link DemoSearchResultDTO}
      */
     @Override
-    public List<Demo> searchAllDemo() {
+    public DemoSearchResultDTO searchAllDemo() {
         SolrQuery solrQuery = new SolrQuery();
         solrQuery.setQuery("*:*");
-        return queryDemosList(solrQuery);
+        List<Demo> demoList = queryDemosList(solrQuery);
+        return new DemoSearchResultDTO("200", "查询成功", demoList);
     }
 
     /**
@@ -42,10 +45,10 @@ public class SearchDemoServiceImpl implements SearchDemoService {
      *
      * @param start  起始
      * @param ending 结尾
-     * @return 查询结果 {@link List<Demo>}
+     * @return 查询结果 {@link DemoSearchResultDTO}
      */
     @Override
-    public List<Demo> searchDemoWithAgeFitter(int start, int ending) {
+    public DemoSearchResultDTO searchDemoWithAgeFitter(int start, int ending) {
         SolrQuery solrQuery = new SolrQuery();
         solrQuery.setQuery("*:*");
         String fq;
@@ -69,7 +72,8 @@ public class SearchDemoServiceImpl implements SearchDemoService {
             fq = "Age:[" + start + " TO " + ending + "]";
         }
         solrQuery.addFilterQuery(fq);
-        return queryDemosList(solrQuery);
+        List<Demo> demoList = queryDemosList(solrQuery);
+        return new DemoSearchResultDTO("200", "查询成功", demoList);
     }
 
     /**
@@ -79,14 +83,15 @@ public class SearchDemoServiceImpl implements SearchDemoService {
      * @return 返回查询结果
      */
     private List<Demo> queryDemosList(SolrQuery solrQuery) {
+        List<Demo> demoList = new ArrayList<>();
         try {
             QueryResponse queryResponse = solrClient.query(solrQuery);
             if (queryResponse != null) {
-                return queryResponse.getBeans(Demo.class);
+                demoList = queryResponse.getBeans(Demo.class);
             }
         } catch (SolrServerException | IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return demoList;
     }
 }

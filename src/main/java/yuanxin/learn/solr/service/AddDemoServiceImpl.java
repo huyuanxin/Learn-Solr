@@ -25,9 +25,9 @@ public class AddDemoServiceImpl implements AddDemoService {
     }
 
     /**
-     * 添加单个demo到Solr
+     * 添加单个 {@link Demo} 到Solr
      *
-     * @param demo 添加的单个demo {@link Demo}
+     * @param demo 添加的单个 {@link Demo}
      * @return 是否成功 {@link Boolean}
      */
     @Override

@@ -5,6 +5,7 @@ import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import yuanxin.learn.solr.api.DeleteDemoService;
+import yuanxin.learn.solr.po.Demo;
 
 import java.io.IOException;
 
@@ -24,7 +25,7 @@ public class DeleteDemoServiceImpl implements DeleteDemoService {
     /**
      * 删除Solr的单个Demo
      *
-     * @param uid Demo的Uid {@link String}
+     * @param uid {@link Demo} 的Uid {@link String}
      * @return 是否成功 {@link Boolean}
      */
     @Override

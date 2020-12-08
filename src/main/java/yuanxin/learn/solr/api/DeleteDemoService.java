@@ -1,6 +1,7 @@
 package yuanxin.learn.solr.api;
 
 import org.springframework.stereotype.Service;
+import yuanxin.learn.solr.po.Demo;
 
 /**
  * @author huyuanxin
@@ -9,9 +10,9 @@ import org.springframework.stereotype.Service;
 @Service("DeleteDemoService")
 public interface DeleteDemoService {
     /**
-     * 删除Solr的单个Demo
+     * 删除Solr的单个 {@link Demo}
      *
-     * @param uid Demo的Uid
+     * @param uid {@link Demo}的Uid
      * @return 是否成功 {@link Boolean}
      */
     boolean deleteDemo(String uid);

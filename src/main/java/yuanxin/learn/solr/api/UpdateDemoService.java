@@ -10,9 +10,9 @@ import yuanxin.learn.solr.po.Demo;
 @Service("UpdateDemoService")
 public interface UpdateDemoService {
     /**
-     * 更新Solr里面的demo
+     * 更新Solr里面的 {@link Demo}
      *
-     * @param demo 更新的demo
+     * @param demo 更新的 {@link Demo}
      * @return 是否成功 {@link Boolean}
      */
     boolean updateDemo(Demo demo);

@@ -42,34 +42,15 @@ public class SearchDemoServiceImpl implements SearchDemoService {
     /**
      * 通过年龄范围查询Solr内的Demo
      *
-     * @param start  起始
-     * @param ending 结尾
+     * @param ageStart  年龄起始
+     * @param ageEnding 年龄结尾
      * @return 查询结果 {@link DemoSearchResultDTO}
      */
     @Override
-    public DemoSearchResultDTO searchDemoWithAgeFitter(int start, int ending) {
+    public DemoSearchResultDTO searchAllDemoWithAgeFitter(int ageStart, int ageEnding) {
         SolrQuery solrQuery = new SolrQuery();
         solrQuery.setQuery("*:*");
-        String fq;
-        // 添加fq过滤条件
-        // 此处存在一个问题, 若Age=10,fq形如 “Age:[* TO 100]”、“Age:[* TO 1000]”时,也会被查询出来。
-        if (start < 0 && ending >= 0) {
-            // Age:[ * TO ending ]
-            fq = "Age:[ * TO " + ending + " ]";
-            solrQuery.addFilterQuery(fq);
-        } else if (start >= 0 && ending < 0) {
-            // // Age:[ start TO * ]
-            fq = "Age:[ " + start + " TO * ]";
-            solrQuery.addFilterQuery(fq);
-        } else if (start < 0) {
-            // start < 0 && ending < 0
-            // Age:[ * TO * ]
-            fq = "Age:[ * TO * ]";
-            solrQuery.addFilterQuery(fq);
-        } else {
-            // Age:[ start TO ending ];
-            fq = "Age:[" + start + " TO " + ending + "]";
-        }
+        String fq = returnDemoAgeFitterQuery(ageStart, ageEnding);
         solrQuery.addFilterQuery(fq);
         return queryDemosList(solrQuery);
     }
@@ -83,6 +64,9 @@ public class SearchDemoServiceImpl implements SearchDemoService {
      */
     @Override
     public DemoSearchResultDTO searchDemo(int currentPage, int pageSize) {
+        if (currentPage <= 0 || pageSize <= 0) {
+            searchAllDemo();
+        }
         SolrQuery solrQuery = new SolrQuery();
         solrQuery.setQuery("*:*");
         int start = (currentPage - 1) * pageSize;
@@ -92,10 +76,36 @@ public class SearchDemoServiceImpl implements SearchDemoService {
     }
 
     /**
-     * 执行solrQuery,返回DemoList
+     * 带分页的通过年龄范围查询Solr内的 {@link Demo}
      *
-     * @param solrQuery solr查询语句{@link DemoSearchResultDTO}
-     * @return 返回查询结果
+     * @param ageStart    年龄起始
+     * @param ageEnding   年龄结尾
+     * @param currentPage 当前页数
+     * @param pageSize    页面显示个数
+     * @return {@link DemoSearchResultDTO}
+     */
+    @Override
+    public DemoSearchResultDTO searchDemoWithAgeFitter(int ageStart, int ageEnding, int currentPage, int pageSize) {
+        if (currentPage <= 0 || pageSize <= 0) {
+            return searchAllDemoWithAgeFitter(ageStart, ageEnding);
+        }
+        SolrQuery solrQuery = new SolrQuery();
+        solrQuery.setQuery("*:*");
+        // 确定fq语句
+        String fq = returnDemoAgeFitterQuery(ageStart, ageEnding);
+        solrQuery.addFilterQuery(fq);
+        // 分页
+        int start = (currentPage - 1) * pageSize;
+        solrQuery.setStart(start);
+        solrQuery.setRows(pageSize);
+        return queryDemosList(solrQuery);
+    }
+
+    /**
+     * 执行solrQuery,返回{@link DemoSearchResultDTO}
+     *
+     * @param solrQuery solr查询语句
+     * @return 返回查询结果 {@link DemoSearchResultDTO}
      */
     private DemoSearchResultDTO queryDemosList(SolrQuery solrQuery) {
         List<Demo> demoList = new ArrayList<>();
@@ -110,5 +120,26 @@ public class SearchDemoServiceImpl implements SearchDemoService {
             e.printStackTrace();
         }
         return new DemoSearchResultDTO("200", "查询成功", demoList, row);
+    }
+
+    private String returnDemoAgeFitterQuery(int ageStart, int ageEnding) {
+        String fq;
+        // 添加fq过滤条件
+        // 此处存在一个问题, 若Age=10,fq形如 “Age:[* TO 100]”、“Age:[* TO 1000]”时,也会被查询出来。
+        if (ageStart < 0 && ageEnding >= 0) {
+            // Age:[ * TO ending ]
+            fq = "Age:[ * TO " + ageEnding + " ]";
+        } else if (ageStart >= 0 && ageEnding < 0) {
+            // // Age:[ start TO * ]
+            fq = "Age:[ " + ageStart + " TO * ]";
+        } else if (ageStart < 0) {
+            // start < 0 && ending < 0
+            // Age:[ * TO * ]
+            fq = "Age:[ * TO * ]";
+        } else {
+            // Age:[ start TO ending ];
+            fq = "Age:[" + ageStart + " TO " + ageEnding + "]";
+        }
+        return fq;
     }
 }

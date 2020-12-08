@@ -28,7 +28,7 @@ public class ModelToSolrDocument {
             document.addField("Desc", demo.getDesc());
         }
         if (demo.getName() != null) {
-            document.addField("create_time", demo.getDate());
+            document.addField("Create_Time", demo.getDate());
         }
         return document;
     }

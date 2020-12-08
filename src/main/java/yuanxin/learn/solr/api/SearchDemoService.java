@@ -18,7 +18,7 @@ public interface SearchDemoService {
     DemoSearchResultDTO searchAllDemo();
 
     /**
-     * 通过年龄范围查询Solr内的{@link Demo}
+     * 通过年龄范围查询Solr内的 {@link Demo}
      *
      * @param ageStart  年龄起始
      * @param ageEnding 年龄结尾
@@ -27,7 +27,7 @@ public interface SearchDemoService {
     DemoSearchResultDTO searchAllDemoWithAgeFitter(int ageStart, int ageEnding);
 
     /**
-     * 带分页查询Solr内的{@link Demo}
+     * 带分页查询Solr内的 {@link Demo}
      *
      * @param currentPage 当前页数
      * @param pageSize    页面显示个数
@@ -37,7 +37,7 @@ public interface SearchDemoService {
 
 
     /**
-     * 带分页的通过年龄范围查询Solr内的{@link Demo}
+     * 带分页的通过年龄范围查询Solr内的 {@link Demo}
      *
      * @param ageStart    年龄起始
      * @param ageEnding   年龄结尾

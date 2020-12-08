@@ -28,15 +28,24 @@ public class SearchDemoController {
 
     @RequestMapping(value = "/searchDemo", method = RequestMethod.GET)
     public DemoSearchResultDTO searchDemo(
-            @RequestParam(value = "currentPage") int currentPage,
-            @RequestParam(value = "pageSize") int pageSize) {
+            @RequestParam(value = "currentPage", required = false, defaultValue = "-1") int currentPage,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "-1") int pageSize) {
         return searchDemoService.searchDemo(currentPage, pageSize);
     }
 
+    @RequestMapping(value = "/searchAllDemoWithAge", method = RequestMethod.GET)
+    public DemoSearchResultDTO searchAllDemoWithAge(
+            @RequestParam(value = "start", required = false, defaultValue = "-1") int ageStart,
+            @RequestParam(value = "ending", required = false, defaultValue = "-1") int ageEnding) {
+        return searchDemoService.searchAllDemoWithAgeFitter(ageStart, ageEnding);
+    }
+
     @RequestMapping(value = "/searchDemoWithAge", method = RequestMethod.GET)
-    public DemoSearchResultDTO searchWithAge(
+    public DemoSearchResultDTO searchDemoWithAge(
             @RequestParam(value = "start", required = false, defaultValue = "-1") int start,
-            @RequestParam(value = "ending", required = false, defaultValue = "-1") int ending) {
-        return searchDemoService.searchDemoWithAgeFitter(start, ending);
+            @RequestParam(value = "ending", required = false, defaultValue = "-1") int ending,
+            @RequestParam(value = "currentPage", required = false, defaultValue = "-1") int currentPage,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "-1") int pageSize) {
+        return searchDemoService.searchDemoWithAgeFitter(start, ending, currentPage, pageSize);
     }
 }

@@ -36,8 +36,7 @@ public class SearchDemoServiceImpl implements SearchDemoService {
     public DemoSearchResultDTO searchAllDemo() {
         SolrQuery solrQuery = new SolrQuery();
         solrQuery.setQuery("*:*");
-        List<Demo> demoList = queryDemosList(solrQuery);
-        return new DemoSearchResultDTO("200", "查询成功", demoList);
+        return queryDemosList(solrQuery);
     }
 
     /**
@@ -72,8 +71,7 @@ public class SearchDemoServiceImpl implements SearchDemoService {
             fq = "Age:[" + start + " TO " + ending + "]";
         }
         solrQuery.addFilterQuery(fq);
-        List<Demo> demoList = queryDemosList(solrQuery);
-        return new DemoSearchResultDTO("200", "查询成功", demoList);
+        return queryDemosList(solrQuery);
     }
 
     /**
@@ -90,26 +88,27 @@ public class SearchDemoServiceImpl implements SearchDemoService {
         int start = (currentPage - 1) * pageSize;
         solrQuery.setStart(start);
         solrQuery.setRows(pageSize);
-        List<Demo> demoList = queryDemosList(solrQuery);
-        return new DemoSearchResultDTO("200", "查询成功", demoList);
+        return queryDemosList(solrQuery);
     }
 
     /**
      * 执行solrQuery,返回DemoList
      *
-     * @param solrQuery solr查询语句{@link SolrQuery}
+     * @param solrQuery solr查询语句{@link DemoSearchResultDTO}
      * @return 返回查询结果
      */
-    private List<Demo> queryDemosList(SolrQuery solrQuery) {
+    private DemoSearchResultDTO queryDemosList(SolrQuery solrQuery) {
         List<Demo> demoList = new ArrayList<>();
+        long row = 0L;
         try {
             QueryResponse queryResponse = solrClient.query(solrQuery);
             if (queryResponse != null) {
                 demoList = queryResponse.getBeans(Demo.class);
+                row = queryResponse.getResults().getNumFound();
             }
         } catch (SolrServerException | IOException e) {
             e.printStackTrace();
         }
-        return demoList;
+        return new DemoSearchResultDTO("200", "查询成功", demoList, row);
     }
 }

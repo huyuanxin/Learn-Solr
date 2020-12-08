@@ -21,9 +21,16 @@ public class SearchDemoController {
         this.searchDemoService = searchDemoService;
     }
 
-    @RequestMapping(value = "/searchDemo", method = RequestMethod.GET)
+    @RequestMapping(value = "/searchAllDemo", method = RequestMethod.GET)
     public DemoSearchResultDTO searchAllDemo() {
         return searchDemoService.searchAllDemo();
+    }
+
+    @RequestMapping(value = "/searchDemo", method = RequestMethod.GET)
+    public DemoSearchResultDTO searchDemo(
+            @RequestParam(value = "currentPage") int currentPage,
+            @RequestParam(value = "pageSize") int pageSize) {
+        return searchDemoService.searchDemo(currentPage, pageSize);
     }
 
     @RequestMapping(value = "/searchDemoWithAge", method = RequestMethod.GET)

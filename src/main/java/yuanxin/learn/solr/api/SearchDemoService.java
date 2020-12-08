@@ -24,4 +24,13 @@ public interface SearchDemoService {
      * @return 查询结果 {@link DemoSearchResultDTO}
      */
     DemoSearchResultDTO searchDemoWithAgeFitter(int start, int ending);
+
+    /**
+     * 带分页查询Solr内的Demo
+     *
+     * @param currentPage 当前页数
+     * @param pageSize    页面显示个数
+     * @return 查询结果 {@link DemoSearchResultDTO}
+     */
+    DemoSearchResultDTO searchDemo(int currentPage, int pageSize);
 }

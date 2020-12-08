@@ -59,9 +59,8 @@ public class DemoSolrController {
 
     @RequestMapping(value = "/searchWithAge", method = RequestMethod.GET)
     public List<Demo> searchWithAge(
-            @RequestParam("start") int start,
-            @RequestParam("ending") int ending
-    ) {
+            @RequestParam(value = "start", required = false, defaultValue = "-1") int start,
+            @RequestParam(value = "ending", required = false, defaultValue = "-1") int ending) {
         return searchDemoService.searchDemoWithAgeFitter(start, ending);
     }
 }

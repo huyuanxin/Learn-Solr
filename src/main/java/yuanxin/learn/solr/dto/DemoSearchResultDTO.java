@@ -3,9 +3,7 @@ package yuanxin.learn.solr.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import yuanxin.learn.solr.po.Demo;
-
-import java.util.List;
+import org.apache.solr.common.SolrDocumentList;
 
 /**
  * @author huyuanxin
@@ -23,7 +21,7 @@ public class DemoSearchResultDTO {
 
     @ApiModelProperty("数据所在的地方")
     @JsonProperty("rows")
-    List<Demo> rows;
+    SolrDocumentList rows;
 
     @ApiModelProperty("返回数据的大小")
     @JsonProperty("RowsSize")
@@ -33,7 +31,7 @@ public class DemoSearchResultDTO {
     @JsonProperty("total")
     Long total;
 
-    public DemoSearchResultDTO(String code, String message, List<Demo> rows, Long total) {
+    public DemoSearchResultDTO(String code, String message, SolrDocumentList rows, Long total) {
         this.code = code;
         this.message = message;
         this.rows = rows;
@@ -57,11 +55,11 @@ public class DemoSearchResultDTO {
         this.message = message;
     }
 
-    public List<Demo> getRows() {
+    public SolrDocumentList getRows() {
         return rows;
     }
 
-    public void setRows(List<Demo> rows) {
+    public void setRows(SolrDocumentList rows) {
         this.rows = rows;
     }
 

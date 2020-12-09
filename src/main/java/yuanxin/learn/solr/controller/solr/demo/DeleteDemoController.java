@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import yuanxin.learn.solr.api.DeleteDemoService;
+import yuanxin.learn.solr.api.demo.DeleteDemoService;
 
 /**
  * @author huyuanxin
@@ -16,6 +16,7 @@ import yuanxin.learn.solr.api.DeleteDemoService;
  */
 @Api(tags = "删除Demo的api")
 @RestController
+@RequestMapping(value = "/demo")
 public class DeleteDemoController {
     final private DeleteDemoService deleteDemoService;
 

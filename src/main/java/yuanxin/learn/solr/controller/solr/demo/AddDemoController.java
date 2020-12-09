@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import yuanxin.learn.solr.api.AddDemoService;
+import yuanxin.learn.solr.api.demo.AddDemoService;
 import yuanxin.learn.solr.po.Demo;
 
 /**
@@ -16,6 +16,7 @@ import yuanxin.learn.solr.po.Demo;
  */
 @Api(tags = "添加Demo的api")
 @RestController
+@RequestMapping(value = "/demo")
 public class AddDemoController {
     final private AddDemoService addDemoService;
 

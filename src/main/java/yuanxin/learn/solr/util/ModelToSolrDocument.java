@@ -30,6 +30,9 @@ public class ModelToSolrDocument {
         if (demo.getName() != null) {
             document.addField("Create_Time", demo.getDate());
         }
+        if (demo.getAge() != null) {
+            document.addField("Age", demo.getAge());
+        }
         return document;
     }
 }

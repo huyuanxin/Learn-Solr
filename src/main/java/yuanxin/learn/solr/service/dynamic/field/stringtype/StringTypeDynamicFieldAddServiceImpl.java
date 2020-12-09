@@ -1,4 +1,4 @@
-package yuanxin.learn.solr.service.demo.dynamic.field.stringtype;
+package yuanxin.learn.solr.service.dynamic.field.stringtype;
 
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrServerException;

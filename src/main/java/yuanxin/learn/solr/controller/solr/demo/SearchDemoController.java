@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import yuanxin.learn.solr.api.SearchDemoService;
+import yuanxin.learn.solr.api.demo.SearchDemoService;
 import yuanxin.learn.solr.dto.DemoSearchResultDTO;
 
 /**
@@ -17,6 +17,7 @@ import yuanxin.learn.solr.dto.DemoSearchResultDTO;
  */
 @Api(tags = "查询Demo的api")
 @RestController
+@RequestMapping(value = "/demo")
 public class SearchDemoController {
     final private SearchDemoService searchDemoService;
 
@@ -36,7 +37,7 @@ public class SearchDemoController {
     public DemoSearchResultDTO searchDemo(
             @ApiParam(value = "当前页数", defaultValue = "-1")
             @RequestParam(value = "currentPage", required = false, defaultValue = "-1") int currentPage,
-            
+
             @ApiParam(value = "单页显示的数量", defaultValue = "-1")
             @RequestParam(value = "pageSize", required = false, defaultValue = "-1") int pageSize) {
         return searchDemoService.searchDemo(currentPage, pageSize);

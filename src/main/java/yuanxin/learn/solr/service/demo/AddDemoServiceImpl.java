@@ -1,11 +1,11 @@
-package yuanxin.learn.solr.service;
+package yuanxin.learn.solr.service.demo;
 
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import yuanxin.learn.solr.api.AddDemoService;
+import yuanxin.learn.solr.api.demo.AddDemoService;
 import yuanxin.learn.solr.po.Demo;
 import yuanxin.learn.solr.util.ModelToSolrDocument;
 

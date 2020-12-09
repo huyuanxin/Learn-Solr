@@ -1,17 +1,17 @@
-package yuanxin.learn.solr.service;
+package yuanxin.learn.solr.service.demo;
 
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.common.SolrDocumentList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import yuanxin.learn.solr.api.SearchDemoService;
+import yuanxin.learn.solr.api.demo.SearchDemoService;
 import yuanxin.learn.solr.dto.DemoSearchResultDTO;
 import yuanxin.learn.solr.po.Demo;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -108,12 +108,12 @@ public class SearchDemoServiceImpl implements SearchDemoService {
      * @return 返回查询结果 {@link DemoSearchResultDTO}
      */
     private DemoSearchResultDTO queryDemosList(SolrQuery solrQuery) {
-        List<Demo> demoList = new ArrayList<>();
+        SolrDocumentList demoList = new SolrDocumentList();
         long row = 0L;
         try {
             QueryResponse queryResponse = solrClient.query(solrQuery);
             if (queryResponse != null) {
-                demoList = queryResponse.getBeans(Demo.class);
+                demoList = queryResponse.getResults();
                 row = queryResponse.getResults().getNumFound();
             }
         } catch (SolrServerException | IOException e) {

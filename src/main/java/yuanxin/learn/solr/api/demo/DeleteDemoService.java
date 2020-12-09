@@ -1,4 +1,4 @@
-package yuanxin.learn.solr.api;
+package yuanxin.learn.solr.api.demo;
 
 import org.springframework.stereotype.Service;
 import yuanxin.learn.solr.po.Demo;

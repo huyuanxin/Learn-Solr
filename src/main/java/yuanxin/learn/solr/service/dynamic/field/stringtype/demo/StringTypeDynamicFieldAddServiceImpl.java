@@ -1,11 +1,11 @@
-package yuanxin.learn.solr.service.dynamic.field.stringtype;
+package yuanxin.learn.solr.service.dynamic.field.stringtype.demo;
 
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import yuanxin.learn.solr.api.dynamic.StringTypeDynamicFieldAddService;
+import yuanxin.learn.solr.api.dynamic.stingtype.demo.StringTypeDynamicFieldAddService;
 import yuanxin.learn.solr.po.Demo;
 import yuanxin.learn.solr.util.ModelToSolrDocument;
 

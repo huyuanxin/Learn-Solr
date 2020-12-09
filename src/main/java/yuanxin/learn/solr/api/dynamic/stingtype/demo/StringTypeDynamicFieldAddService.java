@@ -1,4 +1,4 @@
-package yuanxin.learn.solr.api.dynamic;
+package yuanxin.learn.solr.api.dynamic.stingtype.demo;
 
 import org.springframework.stereotype.Service;
 
